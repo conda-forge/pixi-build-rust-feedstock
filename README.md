@@ -206,6 +206,3 @@ Feedstock Maintainers
 * [@baszalmstra](https://github.com/baszalmstra/)
 * [@ruben-arts](https://github.com/ruben-arts/)
 
-
-<!-- dummy commit to enable rerendering -->
-
