@@ -1,7 +1,7 @@
 # yaml-language-server: $schema=https://raw.githubusercontent.com/prefix-dev/recipe-format/main/schema.json
 context:
   name: pixi-build-rust
-  version: "0.3.2"
+  version: "0.4.0"
 
 package:
   name: ${{ name }}
@@ -9,7 +9,7 @@ package:
 
 source:
   url: https://github.com/prefix-dev/pixi-build-backends/archive/refs/tags/${{ name }}-v${{ version }}.tar.gz
-  sha256: e1e3efacb97ee436facbcbdd1b1ee3ef8de27be89ad215efb898c5df10650d95
+  sha256: 34426bc9c06dc0a155afd21d6349db04a84a2622ef1f98c19b8e342572f03e47
 
 build:
   number: 0
@@ -49,7 +49,7 @@ requirements:
     - if: unix
       then: openssl
   run:
-    - pixi-build-api-version >=0,<2
+    - pixi-build-api-version >=2,<3
 
 tests:
   - script: ${{ name }} --help
