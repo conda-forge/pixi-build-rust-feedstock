@@ -45,8 +45,6 @@ requirements:
     - cargo-auditable
   host:
     - pkg-config
-    - libzlib
-    - liblzma
     - if: unix
       then: openssl
   run:
