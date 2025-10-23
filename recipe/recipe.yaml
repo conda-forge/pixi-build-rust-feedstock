@@ -31,7 +31,7 @@ build:
         then:
           - set CARGO_HOME=C:\.cargo
           - md %CARGO_HOME%
-      - cargo auditable install --locked --no-track --bins --root ${{ PREFIX }} --path crates/${{ name }}
+      - cargo auditable install --locked --no-track --bins --root ${{ PREFIX }} --path crates/${{ name }} --no-default-features --features native-tls
       - cargo-bundle-licenses --format yaml --output ./THIRDPARTY.yml
   files:
     - bin/${{ name }}
