@@ -1,15 +1,16 @@
 # yaml-language-server: $schema=https://raw.githubusercontent.com/prefix-dev/recipe-format/main/schema.json
 context:
   name: pixi-build-rust
-  version: "0.4.5"
+  crate_name: pixi_build_rust
+  version: "0.4.6"
 
 package:
   name: ${{ name }}
   version: ${{ version }}
 
 source:
-  url: https://github.com/prefix-dev/pixi-build-backends/archive/refs/tags/${{ name }}-v${{ version }}.tar.gz
-  sha256: 7ee0e8b5b617a94c3e48c6b603c7bfe14e511fe316b73e9b24c1f802ec0f38a7
+  url: https://github.com/prefix-dev/pixi/archive/refs/tags/${{ name }}-v${{ version }}.tar.gz
+  sha256: 6027974d24b9e025bd44c7c48bcc7e1a24ce6abf7a358a6a346bc1f419a1fdd6
 
 build:
   number: 0
@@ -31,7 +32,7 @@ build:
         then:
           - set CARGO_HOME=C:\.cargo
           - md %CARGO_HOME%
-      - cargo auditable install --locked --no-track --bins --root ${{ PREFIX }} --path crates/${{ name }} --no-default-features --features native-tls
+      - cargo auditable install --locked --no-track --bins --root ${{ PREFIX }} --path crates/${{ crate_name }} --no-default-features --features native-tls
       - cargo-bundle-licenses --format yaml --output ./THIRDPARTY.yml
   files:
     - bin/${{ name }}
@@ -57,7 +58,7 @@ tests:
         - ${{ name }}
 
 about:
-  homepage: https://github.com/prefix-dev/pixi-build-backends
+  homepage: https://github.com/prefix-dev/pixi
   summary: A pixi build backend to build Rust packages.
   description: |
     This package provides a build backend for pixi that allows building Rust packages.
@@ -66,7 +67,7 @@ about:
     - LICENSE
     - THIRDPARTY.yml
   documentation: https://prefix-dev.github.io/pixi-build-backends
-  repository: https://github.com/prefix-dev/pixi-build-backends
+  repository: https://github.com/prefix-dev/pixi
 
 extra:
   recipe-maintainers:
