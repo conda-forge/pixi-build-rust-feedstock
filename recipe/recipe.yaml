@@ -2,15 +2,16 @@
 context:
   name: pixi-build-rust
   crate_name: pixi_build_rust
-  version: "0.4.6"
+  version: "0.4.7"
 
 package:
   name: ${{ name }}
   version: ${{ version }}
 
 source:
-  url: https://github.com/prefix-dev/pixi/archive/refs/tags/${{ name }}-v${{ version }}.tar.gz
-  sha256: 6027974d24b9e025bd44c7c48bcc7e1a24ce6abf7a358a6a346bc1f419a1fdd6
+  url: https://github.com/prefix-dev/pixi/archive/refs/tags/${{ name }}-v${{ 
+    version }}.tar.gz
+  sha256: 4187214a3d7b3bd49bb4ea3b4385f225de4b79ee5183522c777e36df1f3d1dab
 
 build:
   number: 0
@@ -19,43 +20,45 @@ build:
       CARGO_PROFILE_RELEASE_STRIP: symbols
       CARGO_PROFILE_RELEASE_LTO: fat
     content:
-      - if: osx and x86_64
-        then:
+    - if: osx and x86_64
+      then:
           # use the default linker for osx-64 as we are hitting a bug with the conda-forge linker
           # https://github.com/rust-lang/rust/issues/140686
-          - unset CARGO_TARGET_X86_64_APPLE_DARWIN_LINKER
+      - unset CARGO_TARGET_X86_64_APPLE_DARWIN_LINKER
 
-      - if: unix
-        then:
-          - export OPENSSL_DIR="$PREFIX"
-      - if: win
-        then:
-          - set CARGO_HOME=C:\.cargo
-          - md %CARGO_HOME%
-      - cargo auditable install --locked --no-track --bins --root ${{ PREFIX }} --path crates/${{ crate_name }} --no-default-features --features native-tls
-      - cargo-bundle-licenses --format yaml --output ./THIRDPARTY.yml
+    - if: unix
+      then:
+      - export OPENSSL_DIR="$PREFIX"
+    - if: win
+      then:
+      - set CARGO_HOME=C:\.cargo
+      - md %CARGO_HOME%
+    - cargo auditable install --locked --no-track --bins --root ${{ PREFIX }} 
+      --path crates/${{ crate_name }} --no-default-features --features 
+      native-tls
+    - cargo-bundle-licenses --format yaml --output ./THIRDPARTY.yml
   files:
-    - bin/${{ name }}
-    - bin/${{ name }}.exe
+  - bin/${{ name }}
+  - bin/${{ name }}.exe
 
 requirements:
   build:
-    - ${{ compiler("rust") }}
-    - ${{ stdlib("c") }}
-    - cargo-bundle-licenses
-    - cargo-auditable
+  - ${{ compiler("rust") }}
+  - ${{ stdlib("c") }}
+  - cargo-bundle-licenses
+  - cargo-auditable
   host:
-    - pkg-config
-    - if: unix
-      then: openssl
+  - pkg-config
+  - if: unix
+    then: openssl
   run:
-    - pixi-build-api-version >=4,<5
+  - pixi-build-api-version >=4,<5
 
 tests:
-  - script: ${{ name }} --help
-  - package_contents:
-      bin:
-        - ${{ name }}
+- script: ${{ name }} --help
+- package_contents:
+    bin:
+    - ${{ name }}
 
 about:
   homepage: https://github.com/prefix-dev/pixi
@@ -64,13 +67,13 @@ about:
     This package provides a build backend for pixi that allows building Rust packages.
   license: BSD-3-Clause
   license_file:
-    - LICENSE
-    - THIRDPARTY.yml
+  - LICENSE
+  - THIRDPARTY.yml
   documentation: https://prefix-dev.github.io/pixi-build-backends
   repository: https://github.com/prefix-dev/pixi
 
 extra:
   recipe-maintainers:
-    - Hofer-Julian
-    - baszalmstra
-    - ruben-arts
+  - Hofer-Julian
+  - baszalmstra
+  - ruben-arts
