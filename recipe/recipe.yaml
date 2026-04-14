@@ -2,7 +2,7 @@
 context:
   name: pixi-build-rust
   crate_name: pixi_build_rust
-  version: "0.4.7"
+  version: "0.4.8"
 
 package:
   name: ${{ name }}
@@ -11,7 +11,7 @@ package:
 source:
   url: https://github.com/prefix-dev/pixi/archive/refs/tags/${{ name }}-v${{ 
     version }}.tar.gz
-  sha256: 4187214a3d7b3bd49bb4ea3b4385f225de4b79ee5183522c777e36df1f3d1dab
+  sha256: 344df1d3cd1abb8636a47e5c9261a72220959809277464d36968a4c3c3121490
 
 build:
   number: 0
