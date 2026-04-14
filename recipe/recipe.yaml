@@ -69,7 +69,7 @@ about:
   license_file:
   - LICENSE
   - THIRDPARTY.yml
-  documentation: https://prefix-dev.github.io/pixi-build-backends
+  documentation: https://pixi.prefix.dev/latest/build/backends/pixi-build-rust/
   repository: https://github.com/prefix-dev/pixi
 
 extra:
