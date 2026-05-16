@@ -55,7 +55,9 @@ requirements:
   - pixi-build-api-version >=4,<5
 
 tests:
-- script: ${{ name }} --help
+- script:
+  - if: build_platform == target_platform
+    then: ${{ name }} --help
 - package_contents:
     bin:
     - ${{ name }}
