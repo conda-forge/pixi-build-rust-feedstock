@@ -32,6 +32,11 @@ build:
     - if: unix
       then:
       - export OPENSSL_DIR="$PREFIX"
+    - if: linux
+      then:
+        # aws-lc-sys' cmake builder defaults to the "Unix Makefiles" generator, but the
+        # Linux build environment has no make; use the ninja generator instead.
+      - export CMAKE_GENERATOR=Ninja
     - if: win
       then:
       - set CARGO_HOME=C:\.cargo
