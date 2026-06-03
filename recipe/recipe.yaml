@@ -48,14 +48,17 @@ requirements:
   - cargo-bundle-licenses
   - cargo-auditable
   host:
-  - pkg-config
+  - if: target_platform != 'win-arm64'
+    then: pkg-config
   - if: unix
     then: openssl
   run:
   - pixi-build-api-version >=4,<5
 
 tests:
-- script: ${{ name }} --help
+- script:
+  - if: build_platform == target_platform
+    then: ${{ name }} --help
 - package_contents:
     bin:
     - ${{ name }}
