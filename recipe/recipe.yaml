@@ -2,7 +2,7 @@
 context:
   name: pixi-build-rust
   crate_name: pixi_build_rust
-  version: "0.5.4"
+  version: "0.5.5"
 
 package:
   name: ${{ name }}
@@ -11,7 +11,7 @@ package:
 source:
   url: https://github.com/prefix-dev/pixi/archive/refs/tags/${{ name }}-v${{ 
     version }}.tar.gz
-  sha256: 33cda205e1e602c6ee3cddafe01bbcbfaf29cad2e7a0978f13a841bbf6d8ac0d
+  sha256: 5869f4eb1edf7568333eb9a0ac5a593d033174a109c0289918393df02733f8d2
 
 build:
   number: 0
@@ -64,7 +64,7 @@ requirements:
   - if: unix
     then: openssl
   run:
-  - pixi-build-api-version >=5,<6
+  - pixi-build-api-version >=6,<7
 
 tests:
 - script:
