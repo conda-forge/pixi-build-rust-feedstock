@@ -88,6 +88,4 @@ about:
 
 extra:
   recipe-maintainers:
-  - Hofer-Julian
-  - baszalmstra
-  - ruben-arts
+  - conda-forge/pixi
